@@ -1,0 +1,109 @@
+
+{include file='common/header'/}
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">设置我的资料</div>
+          <div class="layui-card-body" pad15>
+            
+            <div class="layui-form" lay-filter="">
+
+              <div class="layui-form-item" style="display:none;">
+                
+                <div class="layui-input-inline">
+                  <input type="text" name="id" value="{$userinfo.id}" readonly class="layui-input" disabled>
+                </div>
+               
+              </div>
+
+
+
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">我的角色</label>
+                <div class="layui-input-inline">
+                  <select name="role" lay-verify="">
+                    <option value="1" selected>超级管理员</option>
+                    <option value="2" >普通管理员</option>
+                    <option value="3" >审核员</option>
+                    <option value="4" >编辑人员</option>
+                  </select> 
+                </div>
+                <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="name" value="{$userinfo.name}" readonly class="layui-input" disabled>
+                </div>
+                <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="nickname" value="{$userinfo.nickname}" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                 {if $userinfo.sex == 1}
+                  <input type="radio" name="sex" value="1" title="男" checked>
+                  <input type="radio" name="sex" value="2" title="女" >
+                  {else /}
+                  <input type="radio" name="sex" value="1" title="男" >
+                  <input type="radio" name="sex" value="2" title="女" checked>
+                  {/if}
+                </div>
+              </div>
+             
+              <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="mobile" value="{$userinfo.mobile}" lay-verify="phone" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="email" value="{$userinfo.email}" lay-verify="email" autocomplete="off" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                  <textarea name="info" placeholder="请输入内容" class="layui-textarea">{$userinfo.info}</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="setmyinfo">确认修改</button>
+                  <!-- <button type="reset" class="layui-btn layui-btn-primary">重新填写</button> -->
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="../../../layuiadmin/layui/layui.js"></script>   -->
+
+{load file="/static/admin/layuiadmin/layui/layui.js"/}
+
+{include file='common/footer'/}
+
+  <script>
+  layui.config({
+    base: '__STATIC__/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'set']);
+  </script>
+</body>
+</html>
